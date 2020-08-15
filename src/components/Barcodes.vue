@@ -226,4 +226,15 @@ textarea {
 .dragover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+@media only screen and (max-width: 700px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+  .create,
+  .qrcode {
+    width: 100%;
+  }
+}
 </style>
