@@ -3,6 +3,7 @@
     <div class="qrcode">
       <h2>Scan Barcodes</h2>
       <qrcode-stream
+        v-if="!error"
         :camera="camera"
         @decode="onDecode"
         @init="onInit"
@@ -105,17 +106,18 @@ export default {
         await promise;
       } catch (error) {
         if (error.name === 'NotAllowedError') {
-          this.error = 'ERROR: you need to grant camera access permisson';
+          this.error =
+            'You need to grant camera access permisson to scan barcodes';
         } else if (error.name === 'NotFoundError') {
-          this.error = 'ERROR: no camera on this device';
+          this.error = 'No camera on this device';
         } else if (error.name === 'NotSupportedError') {
-          this.error = 'ERROR: secure context required (HTTPS, localhost)';
+          this.error = 'Secure context required (HTTPS, localhost)';
         } else if (error.name === 'NotReadableError') {
-          this.error = 'ERROR: is the camera already in use?';
+          this.error = 'Is the camera already in use?';
         } else if (error.name === 'OverconstrainedError') {
-          this.error = 'ERROR: installed cameras are not suitable';
+          this.error = 'Installed cameras are not suitable';
         } else if (error.name === 'StreamApiNotSupportedError') {
-          this.error = 'ERROR: Stream API is not supported in this browser';
+          this.error = 'Stream API is not supported in this browser';
         }
       }
     },
@@ -154,9 +156,9 @@ export default {
         }
       }
     },
-    onDecodeUpload (result) {
-      this.uploadResult = result
-    }
+    onDecodeUpload(result) {
+      this.uploadResult = result;
+    },
   },
 };
 </script>
@@ -186,7 +188,7 @@ hr {
 }
 .error {
   color: red;
-  font-weight: 500;
+  font-weight: 700;
 }
 .result {
   font-size: 1.2rem;
