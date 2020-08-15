@@ -3,9 +3,11 @@ import VueRouter from 'vue-router';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import Barcodes from './components/Barcodes';
 import App from './App';
 
 const routes = [
+  { path: '/', component: Barcodes },
   { path: '/signup', component: SignUp },
   { path: '/login', component: Login },
   { path: '/dashboard', component: Dashboard },
