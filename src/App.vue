@@ -1,25 +1,84 @@
 <template>
   <div id="app">
     <nav>
-      <!-- <router-link  to="/">Home</router-link> -->
-      <!-- <router-link to="/signup">Register</router-link> -->
-      <!-- <router-link to="/login">Login</router-link> -->
+      <div>
+        <router-link v-if="token" to="/">Home</router-link>
+        <router-link v-if="token" to="/dashboard">Dashboard</router-link>
+        <router-link v-if="!token" to="/signup">Register</router-link>
+        <router-link v-if="!token" to="/login">Login</router-link>
+        <button v-if="token" class="submit" @click.prevent="logout">Logout</button>
+      </div>
     </nav>
     <router-view />
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data: function () {
+    return {
+      token: localStorage.getItem("barcodeToken"),
+    };
+  },
+  methods: {
+    async logout() {
+      localStorage.removeItem("barcodeToken");
+      window.location.href = "/login";
+    },
+  },
+};
 </script>
 
 <style>
+*,
+body {
+  padding: 0;
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+nav {
+  width: 100%;
+  height: 30px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 60px;
+  padding: 1rem;
+  position: relative;
+}
+
+nav > div {
+  text-align: right;
+  color: blue;
+  position: absolute;
+  top: 20px;
+  right: 70px;
+  margin-bottom: 10px;
+}
+
+nav a {
+  padding: 10px 20px;
+}
+
+nav a:hover,
+.submit:hover {
+  background: #ddd;
+  color: green;
+}
+
+.submit {
+  border: none;
+  background: inherit;
+  padding: 10px 20px;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  cursor: pointer;
 }
 </style>
