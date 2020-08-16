@@ -1,6 +1,7 @@
 <template>
   <form>
     <p>Backup your barcodes</p>
+    <p class="error">{{error}}</p>
     <input placeholder="Email address" v-model="email" type="email" />
     <input placeholder="Password" v-model="password" type="password" />
     <button id="submit" @click.prevent="submitted">Signup</button>
@@ -9,26 +10,31 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: 'SignUp',
-  data: function() {
+  name: "SignUp",
+  data: function () {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
+      error: "",
     };
   },
   methods: {
     async submitted() {
-      console.log({ password: this.password, email: this.email });
-      const result = await axios.post(
-        'https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/add',
-        {
-          password: this.password,
-          email: this.email,
-        }
-      );
-      localStorage.setItem('barcodeToken', result.data.token);
+      try {
+        const result = await axios.post(
+          "https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/add",
+          {
+            password: this.password,
+            email: this.email,
+          }
+        );
+        localStorage.setItem("barcodeToken", result.data.token);
+        this.$router.push("/dashboard");
+      } catch (error) {
+        this.error = error.response.data.message;
+      }
     },
   },
 };
