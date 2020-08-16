@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="login">
     <loading
       :active.sync="isLoading"
       :can-cancel="true"
@@ -57,7 +57,7 @@ export default {
 
 <style>
 #submit {
-  background: green;
+  background: #9eb369;
   padding: 1rem 1.5rem;
   font-size: 1rem;
   color: white;
@@ -67,9 +67,9 @@ export default {
 }
 
 #submit:hover {
-  color: green;
+  color: #9eb369;
   background: white;
-  border: green solid 2px;
+  border: #9eb369 solid 2px;
 }
 form {
   display: flex;
@@ -100,5 +100,16 @@ a {
 
 a:hover {
   color: green;
+}
+.login {
+  margin-top: 70px;
+}
+
+.login > input {
+  border: #9eb369 1px solid;
+}
+
+.login > button {
+  border: #9eb369 1px solid;
 }
 </style>

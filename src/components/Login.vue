@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="login">
     <loading
       :active.sync="isLoading"
       :can-cancel="true"
