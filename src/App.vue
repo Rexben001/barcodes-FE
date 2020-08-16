@@ -2,11 +2,14 @@
   <div id="app">
     <nav>
       <div>
-        <router-link v-if="token" to="/">Home</router-link>
+        <router-link v-if="token" to="/">Create</router-link>
+        <router-link v-if="token" to="/scan">Scan</router-link>
         <router-link v-if="token" to="/dashboard">Dashboard</router-link>
         <router-link v-if="!token" to="/signup">Register</router-link>
         <router-link v-if="!token" to="/login">Login</router-link>
-        <button v-if="token" class="submit" @click.prevent="logout">Logout</button>
+        <button v-if="token" class="submit" @click.prevent="logout">
+          Logout
+        </button>
       </div>
     </nav>
     <router-view />
@@ -15,15 +18,15 @@
 
 <script>
 export default {
-  data: function () {
+  data: function() {
     return {
-      token: localStorage.getItem("barcodeToken"),
+      token: localStorage.getItem('barcodeToken'),
     };
   },
   methods: {
     async logout() {
-      localStorage.removeItem("barcodeToken");
-      window.location.href = "/login";
+      localStorage.removeItem('barcodeToken');
+      window.location.href = '/login';
     },
   },
 };
@@ -46,10 +49,11 @@ body {
 nav {
   width: 100%;
   height: 30px;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 60px;
+  border-bottom: 1px solid #e2ff96;
+  margin-bottom: 10px;
   padding: 1rem;
   position: relative;
+  
 }
 
 nav > div {
@@ -67,7 +71,7 @@ nav a {
 
 nav a:hover,
 .submit:hover {
-  background: #ddd;
+  background: #f5f5f5;
   color: green;
 }
 
@@ -80,5 +84,12 @@ nav a:hover,
   cursor: pointer;
   outline: inherit;
   cursor: pointer;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+textarea {
+  font-size: 2rem;
 }
 </style>
