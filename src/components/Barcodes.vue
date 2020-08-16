@@ -1,74 +1,64 @@
 <template>
   <div class="main">
-    <div class="qrcode">
-      <h2>Scan Barcodes</h2>
-      <qrcode-stream
-        v-if="!error"
-        :camera="camera"
-        @decode="onDecode"
-        @init="onInit"
-        class="qrcode-main"
-      />
-      <p v-if="result">Result👇</p>
-      <p v-if="result">{{ result }}</p>
-      <p v-if="error" class="error">{{ error }}</p>
-
-      <h2>Drag and Drop zone</h2>
-      <qrcode-drop-zone @detect="onDetect" @dragover="onDragOver" @init="logErrors">
-        <div class="drop-area" :class="{ dragover: dragover }">DROP SOME IMAGES HERE</div>
-      </qrcode-drop-zone>
-      <p v-if="dragResult">Result👇</p>
-      <p v-if="dragResult">{{ dragResult }}</p>
-      <p v-if="dragError" class="error">{{ dragError }}</p>
-
-      <h2>Upload zone</h2>
-      <qrcode-capture @decode="onDecodeUpload" />
-
-      <p v-if="uploadResult">Result👇</p>
-      <p v-if="uploadResult">{{ uploadResult }}</p>
-      <p v-if="uploadError" class="error">{{ uploadError }}</p>
-    </div>
-
     <div class="create">
-      <h2>Create Your QR code</h2>
-      <form>
-        <textarea placeholder="Enter text here " v-model="text" type="text" />
-        <button id="submit" @click.prevent="submitted">Create QR code</button>
-      </form>
+      <div>
+        <h2>Create Your QR code</h2>
+        <img src="../assets/qrboy.svg" />
+      </div>
 
-      <p v-if="url">QR codee👇</p>
-      <img v-if="url" :src="url" />
-      <a v-if="url" download="barcode.png" :href="url">Download</a>
+      <div id="create">
+        <form>
+          <textarea placeholder="Enter text here " v-model="text" type="text" />
+          <button class="submitted" @click.prevent="submitted">
+            Create QR code
+          </button>
+        </form>
+
+        <div>
+          <loading
+            :active.sync="isLoading"
+            :can-cancel="true"
+            :on-cancel="onCancel"
+            :is-full-page="fullPage"
+          ></loading>
+          <p class="result">Result</p>
+          <img v-if="url" class="codes" :src="url" />
+          <a v-if="url" class="fas fa-save" download="barcode.jpg" :href="url">
+            .jpg</a
+          >
+          <a v-if="url" class="fas fa-save" download="barcode.png" :href="url">
+            .png</a
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from "vue-qrcode-reader";
+import axios from 'axios';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
-  name: "Barcodes",
-  components: {
-    QrcodeStream,
-    QrcodeDropZone,
-    QrcodeCapture,
-  },
-  data: function () {
+  name: 'Barcodes',
+
+  data: function() {
     return {
-      text: "",
-      url: "",
-      result: "",
-      error: "",
-      camera: "auto",
-      dragResult: "",
-      uploadResult: "",
-      dragError: "",
+      text: '',
+      url: '',
+      result: '',
+      error: '',
+      isLoading: false,
     };
+  },
+  components: {
+    Loading,
   },
   methods: {
     async submitted() {
-      const token = localStorage.getItem("barcodeToken");
+      this.isLoading = true;
+      const token = localStorage.getItem('barcodeToken');
       let headers = {};
       if (token) {
         headers = {
@@ -76,7 +66,7 @@ export default {
         };
       }
       const result = await axios.post(
-        "https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes",
+        'https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes',
         {
           text: this.text,
         },
@@ -84,74 +74,9 @@ export default {
       );
 
       this.url = result.data.url;
-    },
-
-    async onDecode(result) {
-      if (result) {
-        this.result = result;
-        this.turnCameraOff();
-        await this.timeout(4000);
-        this.turnCameraOn();
+      if (this.url) {
+        this.isLoading = false;
       }
-    },
-
-    async onInit(promise) {
-      try {
-        await promise;
-      } catch (error) {
-        if (error.name === "NotAllowedError") {
-          this.error =
-            "You need to grant camera access permisson to scan barcodes";
-        } else if (error.name === "NotFoundError") {
-          this.error = "No camera on this device";
-        } else if (error.name === "NotSupportedError") {
-          this.error = "Secure context required (HTTPS, localhost)";
-        } else if (error.name === "NotReadableError") {
-          this.error = "Is the camera already in use?";
-        } else if (error.name === "OverconstrainedError") {
-          this.error = "Installed cameras are not suitable";
-        } else if (error.name === "StreamApiNotSupportedError") {
-          this.error = "Stream API is not supported in this browser";
-        }
-      }
-    },
-    turnCameraOn() {
-      this.camera = "auto";
-    },
-
-    turnCameraOff() {
-      this.camera = "off";
-    },
-    timeout(ms) {
-      return new Promise((resolve) => {
-        window.setTimeout(resolve, ms);
-      });
-    },
-    onDragOver(isDraggingOver) {
-      this.dragover = isDraggingOver;
-    },
-    logErrors(promise) {
-      promise.catch(console.error);
-    },
-    async onDetect(promise) {
-      try {
-        console.log(promise);
-        const { content } = await promise;
-
-        this.dragResult = content;
-        this.dragError = null;
-      } catch (error) {
-        if (error.name === "DropImageFetchError") {
-          this.dragError = "Sorry, you can't load cross-origin images :/";
-        } else if (error.name === "DropImageDecodeError") {
-          this.dragError = "Ok, that's not an image. That can't be decoded.";
-        } else {
-          this.dragError = "Ups, what kind of error is this?! " + error.message;
-        }
-      }
-    },
-    onDecodeUpload(result) {
-      this.uploadResult = result;
     },
   },
 };
@@ -165,11 +90,11 @@ a {
   margin-top: 1rem;
 }
 
-img {
+.codes {
   display: block;
-  margin: 0.5rem auto 2rem;
-  width: 35%;
-  height: 40%;
+  margin: 1rem auto 2rem;
+  width: 40%;
+  height: 45%;
 }
 .qrcode-main {
   width: 500px;
@@ -191,18 +116,20 @@ hr {
 .main {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
-.create,
+.create {
+  width: 95%;
+  position: relative;
+}
+.create > div {
+  display: flex;
+  width: inherit;
+  justify-content: center;
+  height: 35%;
+}
 .qrcode {
   width: 50%;
-}
-
-textarea {
-  padding: 1rem;
-  margin: 1rem;
-  border-radius: 7px;
-  resize: none;
-  height: 200px;
 }
 
 .drop-area {
@@ -219,6 +146,91 @@ textarea {
 
 .dragover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.create > div > img {
+  padding: 0px;
+  margin: 0px;
+  margin-left: 50%;
+  width: 300px;
+  height: 250px;
+  position: absolute;
+  top: -10px;
+  right: 10px;
+}
+
+.create > div > h2 {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  font-family: 'Nova Cut', cursive;
+  font-size: 2rem;
+  color: #9eb369;
+}
+
+#create {
+  display: flex;
+  width: 80%;
+  box-sizing: border-box;
+  justify-content: center;
+  margin: 0 auto;
+  height: 450px;
+}
+
+#create > div {
+  border: 2px solid #f5f5f5;
+  width: 40%;
+  margin: 0;
+  padding: 1rem;
+  border-radius: 10px;
+}
+#create > form {
+  width: 60%;
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+textarea {
+  border: 0;
+  box-shadow: 5px 5px 10px 5px #ddd;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 7px;
+  resize: none;
+  height: 300px;
+}
+
+.submitted {
+  border: none;
+  background: #9eb369;
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+  box-shadow: 5px 5px 10px 5px #ddd;
+  border-radius: 7px;
+  cursor: pointer;
+  color: white;
+}
+
+.submitted:hover,
+.fa-save:hover {
+  color: #9eb369;
+  background: #dde5cd;
+}
+
+.fa-save {
+  color: white;
+  background: #98ad65;
+  font-size: 1.5rem;
+  margin: 1rem;
+  box-shadow: 5px 5px 10px 5px #f5f5f5;
+}
+
+.result {
+  font-size: 2rem;
+  font-family: cursive;
 }
 
 @media only screen and (max-width: 700px) {
