@@ -7,14 +7,25 @@ import Barcodes from './components/Barcodes';
 import App from './App';
 
 const routes = [
-  { path: '/', component: Barcodes },
-  { path: '/signup', component: SignUp },
-  { path: '/login', component: Login },
-  { path: '/dashboard', component: Dashboard },
+  { path: '/', component: Barcodes, name: 'Dashboard' },
+  { path: '/signup', component: SignUp, name: 'Signup' },
+  { path: '/login', component: Login, name: 'Login' },
+  { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
 ];
 const router = new VueRouter({
   mode: 'history',
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('barcodeToken');
+  if (to.name === 'Dashboard' && !token) {
+    router.push({
+      name: 'Login',
+    });
+  } else {
+    next();
+  }
 });
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
