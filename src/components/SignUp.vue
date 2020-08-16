@@ -1,6 +1,6 @@
 <template>
   <form>
-    <p>Backup your barcodes</p>
+    <p>Backup your qrcodes</p>
     <p class="error">{{error}}</p>
     <input placeholder="Email address" v-model="email" type="email" />
     <input placeholder="Password" v-model="password" type="password" />

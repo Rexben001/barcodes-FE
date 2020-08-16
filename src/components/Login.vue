@@ -1,6 +1,6 @@
 <template>
   <form>
-    <p>Login to get all your barcode</p>
+    <p>Login to get all your qrcodes</p>
     <p class="error">{{error}}</p>
     <input placeholder="Email address" v-model="email" type="email" />
     <input placeholder="Password" v-model="password" type="password" />

@@ -14,14 +14,8 @@
       <p v-if="error" class="error">{{ error }}</p>
 
       <h2>Drag and Drop zone</h2>
-      <qrcode-drop-zone
-        @detect="onDetect"
-        @dragover="onDragOver"
-        @init="logErrors"
-      >
-        <div class="drop-area" :class="{ dragover: dragover }">
-          DROP SOME IMAGES HERE
-        </div>
+      <qrcode-drop-zone @detect="onDetect" @dragover="onDragOver" @init="logErrors">
+        <div class="drop-area" :class="{ dragover: dragover }">DROP SOME IMAGES HERE</div>
       </qrcode-drop-zone>
       <p v-if="dragResult">Result👇</p>
       <p v-if="dragResult">{{ dragResult }}</p>
@@ -36,13 +30,13 @@
     </div>
 
     <div class="create">
-      <h2>Create Your Barcodes</h2>
+      <h2>Create Your QR code</h2>
       <form>
         <textarea placeholder="Enter text here " v-model="text" type="text" />
-        <button id="submit" @click.prevent="submitted">Create Barcode</button>
+        <button id="submit" @click.prevent="submitted">Create QR code</button>
       </form>
 
-      <p v-if="url">Barcode👇</p>
+      <p v-if="url">QR codee👇</p>
       <img v-if="url" :src="url" />
       <a v-if="url" download="barcode.png" :href="url">Download</a>
     </div>
@@ -50,31 +44,31 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader';
+import axios from "axios";
+import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from "vue-qrcode-reader";
 
 export default {
-  name: 'Barcodes',
+  name: "Barcodes",
   components: {
     QrcodeStream,
     QrcodeDropZone,
     QrcodeCapture,
   },
-  data: function() {
+  data: function () {
     return {
-      text: '',
-      url: '',
-      result: '',
-      error: '',
-      camera: 'auto',
-      dragResult: '',
-      uploadResult: '',
-      dragError: '',
+      text: "",
+      url: "",
+      result: "",
+      error: "",
+      camera: "auto",
+      dragResult: "",
+      uploadResult: "",
+      dragError: "",
     };
   },
   methods: {
     async submitted() {
-      const token = localStorage.getItem('barcodeToken');
+      const token = localStorage.getItem("barcodeToken");
       let headers = {};
       if (token) {
         headers = {
@@ -82,7 +76,7 @@ export default {
         };
       }
       const result = await axios.post(
-        'https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes',
+        "https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes",
         {
           text: this.text,
         },
@@ -105,28 +99,28 @@ export default {
       try {
         await promise;
       } catch (error) {
-        if (error.name === 'NotAllowedError') {
+        if (error.name === "NotAllowedError") {
           this.error =
-            'You need to grant camera access permisson to scan barcodes';
-        } else if (error.name === 'NotFoundError') {
-          this.error = 'No camera on this device';
-        } else if (error.name === 'NotSupportedError') {
-          this.error = 'Secure context required (HTTPS, localhost)';
-        } else if (error.name === 'NotReadableError') {
-          this.error = 'Is the camera already in use?';
-        } else if (error.name === 'OverconstrainedError') {
-          this.error = 'Installed cameras are not suitable';
-        } else if (error.name === 'StreamApiNotSupportedError') {
-          this.error = 'Stream API is not supported in this browser';
+            "You need to grant camera access permisson to scan barcodes";
+        } else if (error.name === "NotFoundError") {
+          this.error = "No camera on this device";
+        } else if (error.name === "NotSupportedError") {
+          this.error = "Secure context required (HTTPS, localhost)";
+        } else if (error.name === "NotReadableError") {
+          this.error = "Is the camera already in use?";
+        } else if (error.name === "OverconstrainedError") {
+          this.error = "Installed cameras are not suitable";
+        } else if (error.name === "StreamApiNotSupportedError") {
+          this.error = "Stream API is not supported in this browser";
         }
       }
     },
     turnCameraOn() {
-      this.camera = 'auto';
+      this.camera = "auto";
     },
 
     turnCameraOff() {
-      this.camera = 'off';
+      this.camera = "off";
     },
     timeout(ms) {
       return new Promise((resolve) => {
@@ -147,12 +141,12 @@ export default {
         this.dragResult = content;
         this.dragError = null;
       } catch (error) {
-        if (error.name === 'DropImageFetchError') {
+        if (error.name === "DropImageFetchError") {
           this.dragError = "Sorry, you can't load cross-origin images :/";
-        } else if (error.name === 'DropImageDecodeError') {
+        } else if (error.name === "DropImageDecodeError") {
           this.dragError = "Ok, that's not an image. That can't be decoded.";
         } else {
-          this.dragError = 'Ups, what kind of error is this?! ' + error.message;
+          this.dragError = "Ups, what kind of error is this?! " + error.message;
         }
       }
     },
