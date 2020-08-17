@@ -47,21 +47,29 @@
             @init="logErrors"
             class="qrcode-main form"
           >
-            <div class="qrcode-main form" :class="{ dragover: dragover }">DROP SOME IMAGES HERE</div>
+            <div class="qrcode-main form" :class="{ dragover: dragover }">
+              <p>DROP SOME IMAGES HERE</p>
+            </div>
           </qrcode-drop-zone>
 
-          <p>Result</p>
-          <p v-if="dragResult">{{ dragResult }}</p>
-          <p v-if="dragError" class="error">{{ dragError }}</p>
+          <div>
+            <p>Result</p>
+            <p v-if="dragResult">{{ dragResult }}</p>
+            <p v-if="dragError" class="error">{{ dragError }}</p>
+          </div>
         </div>
       </div>
 
       <div v-if="capture">
         <div id="create">
-          <qrcode-capture @decode="onDecodeUpload" class="qrcode-main form" />
-          <p v-if="uploadResult">Result</p>
-          <p v-if="uploadResult">{{ uploadResult }}</p>
-          <p v-if="uploadError" class="error">{{ uploadError }}</p>
+          <div class="qrcode-main form">
+            <qrcode-capture @decode="onDecodeUpload" class="input" @change="loadFile($event)" />
+          </div>
+          <div>
+            <p>Result</p>
+            <p v-if="uploadResult">{{ uploadResult }}</p>
+            <p v-if="uploadError" class="error">{{ uploadError }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -161,11 +169,15 @@ export default {
       }
     },
     onDecodeUpload(result) {
-      if (!result)
-        return (this.uploadError =
-          "Unable to scan qrcode, pls provide a valid qrcode");
+      try {
+        if (!result)
+          return (this.uploadError =
+            "Unable to scan qrcode, pls provide a valid qrcode");
 
-      this.uploadResult = result;
+        this.uploadResult = result;
+      } catch (error) {
+        console.log("error>>", error);
+      }
     },
     clicked(value) {
       console.log("value", value);
@@ -178,6 +190,16 @@ export default {
       if (re.test(result)) {
         this.isUrl = true;
       }
+    },
+    loadFile(event) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        // var output = document.getElementById("output");
+        // output.src = reader.result;
+
+        console.log(reader.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
     },
   },
 };
@@ -274,5 +296,16 @@ img {
 }
 .qrcode .create img {
   top: -28px;
+}
+
+input[type="file"] {
+  padding: 1rem;
+  font-size: 1.5rem;
+  background: #6e7d47;
+  margin-top: 20vh;
+}
+.qrcode-main .form > p {
+  color: #6e7d47;
+  width: 100%;
 }
 </style>
