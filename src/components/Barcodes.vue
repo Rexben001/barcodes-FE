@@ -7,11 +7,9 @@
       </div>
 
       <div id="create">
-        <form>
+        <form class="form">
           <textarea placeholder="Enter text here " v-model="text" type="text" />
-          <button class="submitted" @click.prevent="submitted">
-            Create QR code
-          </button>
+          <button class="submitted" @click.prevent="submitted">Create QR code</button>
         </form>
 
         <div>
@@ -23,12 +21,8 @@
           ></loading>
           <p class="result">Result</p>
           <img v-if="url" class="codes" :src="url" />
-          <a v-if="url" class="fas fa-save" download="barcode.jpg" :href="url">
-            .jpg</a
-          >
-          <a v-if="url" class="fas fa-save" download="barcode.png" :href="url">
-            .png</a
-          >
+          <a v-if="url" class="fas fa-save" download="barcode.jpg" :href="url">.jpg</a>
+          <a v-if="url" class="fas fa-save" download="barcode.png" :href="url">.png</a>
         </div>
       </div>
     </div>
@@ -36,19 +30,19 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+import axios from "axios";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
-  name: 'Barcodes',
+  name: "Barcodes",
 
-  data: function() {
+  data: function () {
     return {
-      text: '',
-      url: '',
-      result: '',
-      error: '',
+      text: "",
+      url: "",
+      result: "",
+      error: "",
       isLoading: false,
     };
   },
@@ -58,7 +52,7 @@ export default {
   methods: {
     async submitted() {
       this.isLoading = true;
-      const token = localStorage.getItem('barcodeToken');
+      const token = localStorage.getItem("barcodeToken");
       let headers = {};
       if (token) {
         headers = {
@@ -66,7 +60,7 @@ export default {
         };
       }
       const result = await axios.post(
-        'https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes',
+        "https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes",
         {
           text: this.text,
         },
@@ -82,8 +76,8 @@ export default {
 };
 </script>
 
-<style scoped>
-a {
+<style>
+#create a {
   background: rgb(23, 228, 88);
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -122,11 +116,11 @@ hr {
   width: 95%;
   position: relative;
 }
-.create > div {
+.create > div, .qrcode .create {
   display: flex;
   width: inherit;
   justify-content: center;
-  height: 35%;
+  height: 48%;
 }
 .qrcode {
   width: 50%;
@@ -148,22 +142,21 @@ hr {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.create > div > img {
-  padding: 0px;
-  margin: 0px;
+.create > div > img, .qrcode .create img {
   margin-left: 50%;
   width: 300px;
   height: 250px;
   position: absolute;
-  top: -10px;
+  top: 13%;
   right: 10px;
 }
 
-.create > div > h2 {
+.create > div > h2,
+.qrcode h2 {
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 20%;
-  font-family: 'Nova Cut', cursive;
+  font-family: "Nova Cut", cursive;
   font-size: 2rem;
   color: #9eb369;
 }
@@ -184,7 +177,7 @@ hr {
   padding: 1rem;
   border-radius: 10px;
 }
-#create > form {
+#create > .form {
   width: 60%;
   margin: 0;
   padding: 0;
@@ -241,6 +234,26 @@ textarea {
   .create,
   .qrcode {
     width: 100%;
+  }
+  #create {
+    flex-direction: column;
+    margin-top: 60vh;
+  }
+  #create > .form,
+  #create > div {
+    width: 100%;
+  }
+  .create {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .create > div > h2 {
+    top: 10%;
+    left: 12%;
+  }
+  .create > div > img {
+    top: 15%;
+    right: 10%;
   }
 }
 </style>
