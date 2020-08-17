@@ -16,7 +16,7 @@
     </div>
     <div class="qrcode">
       <div class="create">
-        <h2 v-if="drag">Drag and Drop zone</h2>
+        <h2 v-if="drop">Drag and Drop zone</h2>
         <h2 v-if="stream">Scan Barcodes</h2>
         <h2 v-if="capture">Upload zone</h2>
         <img src="../assets/qr.svg" />
@@ -88,6 +88,7 @@ export default {
       dragResult: "",
       uploadResult: "",
       dragError: "",
+      uploadError: "",
       stream: true,
       drop: false,
       capture: false,
@@ -145,11 +146,10 @@ export default {
     },
     async onDetect(promise) {
       try {
-        console.log(promise);
         const { content } = await promise;
-
-        this.dragResult = content;
-        this.dragError = null;
+        if (!content) {
+          this.dragError = "Unable to scan qrcode, pls provide a valid qrcode";
+        } else this.dragResult = content;
       } catch (error) {
         if (error.name === "DropImageFetchError") {
           this.dragError = "Sorry, you can't load cross-origin images :/";
@@ -161,6 +161,10 @@ export default {
       }
     },
     onDecodeUpload(result) {
+      if (!result)
+        return (this.uploadError =
+          "Unable to scan qrcode, pls provide a valid qrcode");
+
       this.uploadResult = result;
     },
     clicked(value) {
