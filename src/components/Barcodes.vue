@@ -116,7 +116,8 @@ hr {
   width: 95%;
   position: relative;
 }
-.create > div, .qrcode .create {
+.create > div,
+.qrcode .create {
   display: flex;
   width: inherit;
   justify-content: center;
@@ -142,7 +143,8 @@ hr {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.create > div > img, .qrcode .create img {
+.create > div > img,
+.qrcode .create img {
   margin-left: 50%;
   width: 300px;
   height: 250px;
@@ -251,9 +253,43 @@ textarea {
     top: 10%;
     left: 12%;
   }
-  .create > div > img {
+  .create > div > img,
+  .qrcode .create img {
     top: 15%;
     right: 10%;
+  }
+
+  .qrcode .create h2 {
+    top: 12%;
+    left: 10%;
+  }
+
+  .qrcode .create img {
+    right: 5px;
+  }
+
+  .tab {
+    display: none;
+  }
+  .qrcode #create {
+    margin-top: 10px;
+    box-sizing: border-box;
+  }
+
+  .qrcode #create .form {
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-top: 3rem;
+    height: 350px;
+  }
+
+  input[type="file"] {
+    padding: 0.5rem !important;
+    font-size: 1rem !important;
+  }
+  .drop {
+    left: 2px !important;
+    top: 20% !important;
   }
 }
 </style>

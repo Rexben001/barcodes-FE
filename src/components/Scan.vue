@@ -16,7 +16,7 @@
     </div>
     <div class="qrcode">
       <div class="create">
-        <h2 v-if="drop">Drag and Drop zone</h2>
+        <h2 v-if="drop" class="drop">Drag and Drop zone</h2>
         <h2 v-if="stream">Scan Barcodes</h2>
         <h2 v-if="capture">Upload zone</h2>
         <img src="../assets/qr.svg" />
@@ -47,7 +47,7 @@
             @init="logErrors"
             class="qrcode-main form"
           >
-            <div class="qrcode-main form" :class="{ dragover: dragover }">
+            <div class="qrcode-main form drop" :class="{ dragover: dragover }">
               <p>DROP SOME IMAGES HERE</p>
             </div>
           </qrcode-drop-zone>
@@ -307,5 +307,7 @@ input[type="file"] {
 .qrcode-main .form > p {
   color: #6e7d47;
   width: 100%;
+  margin-top: 3rem;
+  font-family: cursive;
 }
 </style>
