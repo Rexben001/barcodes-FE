@@ -7,9 +7,7 @@
         <router-link v-if="token" to="/dashboard">Dashboard</router-link>
         <router-link v-if="!token" to="/signup">Register</router-link>
         <router-link v-if="!token" to="/login">Login</router-link>
-        <button v-if="token" class="submit" @click.prevent="logout">
-          Logout
-        </button>
+        <button v-if="token" class="submit" @click.prevent="logout">Logout</button>
       </div>
     </nav>
     <router-view />
@@ -18,15 +16,15 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
-      token: localStorage.getItem('barcodeToken'),
+      token: localStorage.getItem("barcodeToken"),
     };
   },
   methods: {
     async logout() {
-      localStorage.removeItem('barcodeToken');
-      window.location.href = '/login';
+      localStorage.removeItem("barcodeToken");
+      window.location.href = "/login";
     },
   },
 };
@@ -52,8 +50,9 @@ nav {
   border-bottom: 1px solid #e2ff96;
   margin-bottom: 10px;
   padding: 1rem;
-  position: relative;
-  
+  position: fixed;
+  z-index: 300;
+  background: white;
 }
 
 nav > div {
