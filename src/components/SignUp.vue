@@ -16,17 +16,17 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+import axios from "axios";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
-  name: 'Login',
-  data: function() {
+  name: "Login",
+  data: function () {
     return {
-      email: '',
-      password: '',
-      error: '',
+      email: "",
+      password: "",
+      error: "",
       isLoading: false,
     };
   },
@@ -38,14 +38,14 @@ export default {
       this.isLoading = true;
       try {
         const result = await axios.post(
-          'https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/add',
+          "https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/add",
           {
             password: this.password,
             email: this.email,
           }
         );
-        localStorage.setItem('barcodeToken', result.data.token);
-        window.location.href = '/dashboard';
+        localStorage.setItem("barcodeToken", result.data.token);
+        window.location.href = "/dashboard";
       } catch (error) {
         this.error = error.response.data.message;
         this.isLoading = false;
@@ -77,6 +77,7 @@ form {
   margin: 0 auto;
   width: 500px;
   font-size: 1rem;
+  padding-top: 20vh;
 }
 input {
   padding: 1rem;
@@ -101,9 +102,9 @@ a {
 a:hover {
   color: green;
 }
-.login {
+/* .login {
   margin-top: 70px;
-}
+} */
 
 .login > input {
   border: #9eb369 1px solid;
@@ -111,5 +112,10 @@ a:hover {
 
 .login > button {
   border: #9eb369 1px solid;
+}
+@media only screen and (max-width: 700px) {
+  form {
+    width: 100%;
+  }
 }
 </style>
