@@ -2,8 +2,8 @@
   <div id="app">
     <nav>
       <div>
-        <router-link v-if="token" to="/">Create</router-link>
-        <router-link v-if="token" to="/scan">Scan</router-link>
+        <router-link to="/">Create</router-link>
+        <router-link to="/scan">Scan</router-link>
         <router-link v-if="token" to="/dashboard">Dashboard</router-link>
         <router-link v-if="!token" to="/signup">Register</router-link>
         <router-link v-if="!token" to="/login">Login</router-link>
