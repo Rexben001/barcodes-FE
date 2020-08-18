@@ -55,7 +55,7 @@
           </div>
           <div>
             <p>Result</p>
-            <p v-if="result && !isUrl">{{ result }}</p>
+            <p class="answer" v-if="result && !isUrl">{{ result }}</p>
             <a v-if="result && isUrl" target="_blank" :href="result">{{
               result
             }}</a>
@@ -78,7 +78,7 @@
 
           <div>
             <p>Result</p>
-            <p v-if="dragResult">{{ dragResult }}</p>
+            <p v-if="dragResult" class="answer">{{ dragResult }}</p>
             <p v-if="dragError" class="error">{{ dragError }}</p>
           </div>
         </div>
@@ -95,7 +95,7 @@
           </div>
           <div>
             <p>Result</p>
-            <p v-if="uploadResult">{{ uploadResult }}</p>
+            <p v-if="uploadResult" class="answer">{{ uploadResult }}</p>
             <p v-if="uploadError" class="error">{{ uploadError }}</p>
           </div>
         </div>
@@ -333,6 +333,11 @@ img {
   top: -28px;
 }
 
+.answer {
+ margin-top: 3rem;
+ font-size: 1.5rem;
+}
+
 input[type='file'] {
   padding: 1rem;
   font-size: 1.5rem;
@@ -384,6 +389,9 @@ input[type='file'] {
 
 .camera .form {
   width: 100% !important;
+}
+#create > div a {
+  margin-top: 3rem;
 }
 @media only screen and (max-width: 700px) {
   .sideMenu,
