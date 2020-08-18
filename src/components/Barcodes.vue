@@ -282,7 +282,7 @@ textarea {
   .qrcode #create .form {
     width: 100% !important;
     box-sizing: border-box;
-    margin-top: 3rem;
+    margin-top: 2rem;
     height: 350px;
   }
 
