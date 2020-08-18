@@ -9,7 +9,9 @@
       <div id="create">
         <form class="form">
           <textarea placeholder="Enter text here " v-model="text" type="text" />
-          <button class="submitted" @click.prevent="submitted">Create QR code</button>
+          <button class="submitted" @click.prevent="submitted">
+            Create QR code
+          </button>
         </form>
 
         <div>
@@ -21,8 +23,12 @@
           ></loading>
           <p class="result">Result</p>
           <img v-if="url" class="codes" :src="url" />
-          <a v-if="url" class="fas fa-save" download="barcode.jpg" :href="url">.jpg</a>
-          <a v-if="url" class="fas fa-save" download="barcode.png" :href="url">.png</a>
+          <a v-if="url" class="fas fa-save" download="barcode.jpg" :href="url"
+            >.jpg</a
+          >
+          <a v-if="url" class="fas fa-save" download="barcode.png" :href="url"
+            >.png</a
+          >
         </div>
       </div>
     </div>
@@ -30,19 +36,19 @@
 </template>
 
 <script>
-import axios from "axios";
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
+import axios from 'axios';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
-  name: "Barcodes",
+  name: 'Barcodes',
 
-  data: function () {
+  data: function() {
     return {
-      text: "",
-      url: "",
-      result: "",
-      error: "",
+      text: '',
+      url: '',
+      result: '',
+      error: '',
       isLoading: false,
     };
   },
@@ -52,7 +58,7 @@ export default {
   methods: {
     async submitted() {
       this.isLoading = true;
-      const token = localStorage.getItem("barcodeToken");
+      const token = localStorage.getItem('barcodeToken');
       let headers = {};
       if (token) {
         headers = {
@@ -60,7 +66,7 @@ export default {
         };
       }
       const result = await axios.post(
-        "https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes",
+        'https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes',
         {
           text: this.text,
         },
@@ -158,7 +164,7 @@ hr {
   position: absolute;
   top: 20%;
   left: 20%;
-  font-family: "Nova Cut", cursive;
+  font-family: 'Nova Cut', cursive;
   font-size: 2rem;
   color: #9eb369;
 }
@@ -268,9 +274,6 @@ textarea {
     right: 5px;
   }
 
-  .tab {
-    display: none;
-  }
   .qrcode #create {
     margin-top: 10px;
     box-sizing: border-box;
@@ -283,16 +286,21 @@ textarea {
     height: 350px;
   }
 
-  input[type="file"] {
+  input[type='file'] {
     padding: 0.5rem !important;
     font-size: 1rem !important;
   }
   .drop {
-    left: 2px !important;
     top: 20% !important;
   }
   #create > div {
     width: 90%;
+  }
+  #create {
+    height: auto;
+  }
+  .camera {
+    height: 400px;
   }
 }
 </style>
