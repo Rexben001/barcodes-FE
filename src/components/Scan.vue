@@ -8,6 +8,7 @@
         v-bind:style="{
           background: stream ? '#9EB369' : '',
           color: stream ? '#fff' : 'inherit',
+          cursor: 'pointer',
         }"
       >
         Camera Scan
@@ -17,6 +18,7 @@
         v-bind:style="{
           background: drop ? '#9EB369' : '',
           color: drop ? '#fff' : 'inherit',
+          cursor: 'pointer',
         }"
       >
         Drag and Drop Scan
@@ -26,6 +28,7 @@
         v-bind:style="{
           background: capture ? '#9EB369' : '',
           color: capture ? '#fff' : 'inherit',
+          cursor: 'pointer',
         }"
       >
         Upload Scan
@@ -324,7 +327,7 @@ img {
   width: 50%;
 }
 .qrcode .create {
-  height: 35%;
+  height: 40%;
 }
 .qrcode .create img {
   top: -28px;
@@ -347,7 +350,7 @@ input[type='file'] {
   font-size: 2.5rem;
   color: rgb(165 187 108);
   display: none;
-  margin-top: -5px;
+  margin-top: 8px;
   position: fixed;
   z-index: 250;
   box-shadow: 5px 5px 10px 5px #ddd;
@@ -357,13 +360,30 @@ input[type='file'] {
 .sideMenuX {
   font-size: 2.1rem;
   display: none;
-  margin-top: 10px;
+  margin-top: 15px;
   position: fixed;
   z-index: 300;
   right: 10px;
-  color: #293902;
+  color: #597b06;
   font-weight: 700;
   cursor: pointer;
+}
+
+.qrcode h2 {
+  left: 30%;
+  top: 30%;
+}
+.qrcode {
+  width: 80%;
+  margin-left: 50vh;
+}
+.qrcode .create img {
+  top: -15px;
+  right: -25%;
+}
+
+.camera .form {
+  width: 100% !important;
 }
 @media only screen and (max-width: 700px) {
   .sideMenu,
@@ -372,6 +392,7 @@ input[type='file'] {
   }
   .tab {
     display: none;
+    margin-top: 40px;
   }
   .open {
     width: 100%;
@@ -380,6 +401,24 @@ input[type='file'] {
     height: 80vh;
     top: -20px;
     display: block;
+  }
+  .qrcode .create {
+    top: 20px;
+  }
+  .qrcode #create {
+    margin-top: 10vh;
+  }
+  .qrcode {
+    width: 100%;
+    margin-left: 0vh;
+  }
+  .qrcode h2 {
+    left: 10%;
+    top: 10%;
+  }
+  .qrcode .create img {
+    top: -15px;
+    right: 5%;
   }
 }
 </style>
