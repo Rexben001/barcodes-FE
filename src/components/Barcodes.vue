@@ -291,5 +291,8 @@ textarea {
     left: 2px !important;
     top: 20% !important;
   }
+  #create > div {
+    width: 90%;
+  }
 }
 </style>
