@@ -8,7 +8,7 @@ import Scan from './components/Scan';
 import App from './App';
 
 const routes = [
-  { path: '/', component: Barcodes, name: 'Dashboard' },
+  { path: '/', component: Barcodes, name: 'Barcodes' },
   { path: '/signup', component: SignUp, name: 'Signup' },
   { path: '/login', component: Login, name: 'Login' },
   { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
@@ -19,16 +19,17 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   const token = localStorage.getItem('barcodeToken');
-//   if (to.name === 'Dashboard' && !token) {
-//     router.push({
-//       name: 'Login',
-//     });
-//   } else {
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('barcodeToken');
+  if (to.name === 'Dashboard' && !token) {
+    console.log('Heree');
+    router.push({
+      name: 'Login',
+    });
+  } else {
+    next();
+  }
+});
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
 

@@ -122,5 +122,13 @@ div {
   .fa-download {
     font-size: 1rem;
   }
+  .dashboard > h2 {
+    text-align: left;
+    padding-left: 1rem;
+    font-size: 2rem;
+    color: #9eb369;
+    margin-bottom: 1rem;
+    padding-top: .5rem;
+  }
 }
 </style>
