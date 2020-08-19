@@ -6,7 +6,7 @@
       :on-cancel="onCancel"
       :is-full-page="fullPage"
     ></loading>
-    <p>Backup your qrcodes</p>
+    <p class="details">Backup your qrcodes</p>
     <p class="error">{{ error }}</p>
     <input placeholder="Email address" v-model="email" type="email" />
     <input placeholder="Password" v-model="password" type="password" />
@@ -16,17 +16,17 @@
 </template>
 
 <script>
-import axios from "axios";
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
+import axios from 'axios';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
-  name: "Login",
-  data: function () {
+  name: 'Login',
+  data: function() {
     return {
-      email: "",
-      password: "",
-      error: "",
+      email: '',
+      password: '',
+      error: '',
       isLoading: false,
     };
   },
@@ -38,14 +38,14 @@ export default {
       this.isLoading = true;
       try {
         const result = await axios.post(
-          "https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/add",
+          'https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/add',
           {
             password: this.password,
             email: this.email,
           }
         );
-        localStorage.setItem("barcodeToken", result.data.token);
-        window.location.href = "/dashboard";
+        localStorage.setItem('barcodeToken', result.data.token);
+        window.location.href = '/dashboard';
       } catch (error) {
         this.error = error.response.data.message;
         this.isLoading = false;
@@ -112,6 +112,13 @@ a:hover {
 
 .login > button {
   border: #9eb369 1px solid;
+}
+
+.details {
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: Avenir;
+  color: #2a3b00;
 }
 @media only screen and (max-width: 700px) {
   form {

@@ -7,7 +7,7 @@
       :is-full-page="fullPage"
     ></loading>
 
-    <p>Login to get all your qrcodes</p>
+    <p class="details">Login to get all your qrcodes</p>
     <p class="error">{{ error }}</p>
     <input placeholder="Email address" v-model="email" type="email" />
     <input placeholder="Password" v-model="password" type="password" />
