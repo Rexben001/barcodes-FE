@@ -164,7 +164,6 @@ hr {
   position: absolute;
   top: 20%;
   left: 20%;
-  font-family: 'Nova Cut', cursive;
   font-size: 2rem;
   color: #9eb369;
 }
@@ -231,7 +230,6 @@ textarea {
 
 .result {
   font-size: 2rem;
-  font-family: cursive;
 }
 
 @media only screen and (max-width: 700px) {

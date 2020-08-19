@@ -348,7 +348,6 @@ input[type="file"] {
   color: #6e7d47;
   width: 100%;
   margin-top: 3rem;
-  font-family: cursive;
 }
 
 .sideMenu {

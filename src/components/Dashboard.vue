@@ -8,11 +8,7 @@
     ></loading>
     <h2>Dashboard</h2>
     <div class="barcodes">
-      <div
-        v-bind:key="imageIndex"
-        class="bars"
-        v-for="(image, imageIndex) in values"
-      >
+      <div v-bind:key="imageIndex" class="bars" v-for="(image, imageIndex) in values">
         <a v-if="image" download="barcode.png" :href="image">
           <p class="fas fa-download"></p>
           <img :src="image" :key="imageIndex" />
@@ -23,14 +19,14 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+import axios from "axios";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 export default {
-  name: 'Dashboard',
-  data: function() {
+  name: "Dashboard",
+  data: function () {
     return {
-      values: '',
+      values: "",
       isLoading: false,
     };
   },
@@ -39,10 +35,10 @@ export default {
   },
   async mounted() {
     this.isLoading = true;
-    const token = localStorage.getItem('barcodeToken');
+    const token = localStorage.getItem("barcodeToken");
 
     const result = await axios.get(
-      'https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes/all',
+      "https://2dz7gb09o9.execute-api.us-east-1.amazonaws.com/dev/barcodes/all",
       {
         headers: {
           Authorization: token,
@@ -79,9 +75,11 @@ div {
 .dashboard > h2 {
   text-align: left;
   padding-left: 1rem;
-  font-family: 'Nova Cut', cursive;
   font-size: 2rem;
   color: #9eb369;
+  margin-left: 15%;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
 }
 
 .bars {

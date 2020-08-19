@@ -96,15 +96,30 @@ textarea {
 
 @media only screen and (max-width: 700px) {
   nav > div {
-    left: 10px;
+    left: 0px;
+    right: 110px;
+  }
+
+  nav a,
+  .submit {
+    padding: 4px 6px;
+    margin: .2rem 1rem .5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 1px 1px 3px 1px #ddd;
+  }
+}
+@media only screen and (max-width: 500px) {
+  nav > div {
+    left: 0px;
     right: 100px;
   }
 
   nav a,
   .submit {
     padding: 4px 6px;
-    margin: 1rem;
-    font-size: 1.1rem;
+    margin: .2rem .5rem;
+    font-size: 1rem;
     font-weight: 500;
     box-shadow: 1px 1px 3px 1px #ddd;
   }
