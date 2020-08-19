@@ -7,7 +7,9 @@
         <router-link v-if="token" to="/dashboard">Dashboard</router-link>
         <router-link v-if="!token" to="/signup">Register</router-link>
         <router-link v-if="!token" to="/login">Login</router-link>
-        <button v-if="token" class="submit" @click.prevent="logout">Logout</button>
+        <button v-if="token" class="submit" @click.prevent="logout">
+          Logout
+        </button>
       </div>
     </nav>
     <router-view />
@@ -16,15 +18,15 @@
 
 <script>
 export default {
-  data: function () {
+  data: function() {
     return {
-      token: localStorage.getItem("barcodeToken"),
+      token: localStorage.getItem('barcodeToken'),
     };
   },
   methods: {
     async logout() {
-      localStorage.removeItem("barcodeToken");
-      window.location.href = "/login";
+      localStorage.removeItem('barcodeToken');
+      window.location.href = '/login';
     },
   },
 };
@@ -90,5 +92,38 @@ textarea:focus {
 }
 textarea {
   font-size: 2rem;
+}
+
+@media only screen and (max-width: 700px) {
+  nav > div {
+    left: 10px;
+    right: 100px;
+  }
+
+  nav a , .submit{
+  padding: 4px 6px;
+  margin: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 1px 1px 3px 1px #ddd;
+}
+
+}
+
+
+@media only screen and (max-width: 400px) {
+  nav > div {
+    left: 10px;
+    right: 100px;
+  }
+
+  nav a , .submit{
+  padding: 4px;
+  margin: .3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: none;
+}
+
 }
 </style>
