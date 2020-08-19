@@ -100,16 +100,15 @@ textarea {
     right: 100px;
   }
 
-  nav a , .submit{
-  padding: 4px 6px;
-  margin: 1rem;
-  font-size: 1.1rem;
-  font-weight: 500;
-  box-shadow: 1px 1px 3px 1px #ddd;
+  nav a,
+  .submit {
+    padding: 4px 6px;
+    margin: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 1px 1px 3px 1px #ddd;
+  }
 }
-
-}
-
 
 @media only screen and (max-width: 400px) {
   nav > div {
@@ -117,13 +116,22 @@ textarea {
     right: 100px;
   }
 
-  nav a , .submit{
-  padding: 4px;
-  margin: .3rem;
-  font-size: 1rem;
-  font-weight: 500;
-  box-shadow: none;
-}
+  nav a,
+  .submit {
+    padding: 4px 10px;
+    margin: 0 auto;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: none;
+    border-right: #ddd solid 1px;
+  }
 
+  .submit {
+    border: none;
+  }
+
+  nav a:first-child {
+    border-left: #ddd solid 1px;
+  }
 }
 </style>
