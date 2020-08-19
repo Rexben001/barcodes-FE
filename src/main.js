@@ -13,6 +13,7 @@ const routes = [
   { path: '/login', component: Login, name: 'Login' },
   { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
   { path: '/scan', component: Scan, name: 'Scan' },
+  { path: '*', redirect: '/' },
 ];
 const router = new VueRouter({
   mode: 'history',
@@ -22,7 +23,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('barcodeToken');
   if (to.name === 'Dashboard' && !token) {
-    console.log('Heree');
     router.push({
       name: 'Login',
     });
