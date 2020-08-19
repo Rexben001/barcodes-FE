@@ -1,7 +1,7 @@
 <template>
   <div class="scan-page">
-    <p v-if="open" @click.prevent="menuOpen" class="sideMenu">☰</p>
-    <p v-if="!open" @click.prevent="menuOpen" class="sideMenuX">X</p>
+    <!-- <p v-if="open" @click.prevent="menuOpen" class="sideMenu">☰</p>
+    <p v-if="!open" @click.prevent="menuOpen" class="sideMenuX">X</p> -->
     <div class="tab" :class="open ? '' : 'open'">
       <p
         @click.prevent="clicked('stream')"
@@ -54,7 +54,7 @@
             />
           </div>
           <div>
-            <p>Result</p>
+            <p class="res">Result</p>
             <p class="answer" v-if="result && !isUrl">{{ result }}</p>
             <a v-if="result && isUrl" target="_blank" :href="result">{{
               result
@@ -334,8 +334,8 @@ img {
 }
 
 .answer {
- margin-top: 3rem;
- font-size: 1.5rem;
+  margin-top: 3rem;
+  font-size: 1.5rem;
 }
 
 input[type='file'] {
@@ -427,6 +427,15 @@ input[type='file'] {
   .qrcode .create img {
     top: -15px;
     right: 5%;
+  }
+
+  .res {
+    margin-bottom: 3rem;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .tab {
+    display: none;
   }
 }
 </style>
