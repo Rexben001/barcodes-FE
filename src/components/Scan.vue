@@ -57,9 +57,7 @@
             <p class="res">Result</p>
             <p class="answer" v-if="result && !isUrl">{{ result }}</p>
             <a v-if="result && isUrl" target="_blank" :href="result">
-              {{
-              result
-              }}
+              {{ result }}
             </a>
           </div>
         </div>
@@ -89,7 +87,11 @@
       <div v-if="capture">
         <div id="create">
           <div class="qrcode-main form">
-            <qrcode-capture @decode="onDecodeUpload" class="input" @change="loadFile($event)" />
+            <qrcode-capture
+              @decode="onDecodeUpload"
+              class="input"
+              @change="loadFile($event)"
+            />
           </div>
           <div>
             <p>Result</p>
@@ -103,26 +105,26 @@
 </template>
 
 <script>
-import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from "vue-qrcode-reader";
+import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader';
 
 export default {
-  name: "Scan",
+  name: 'Scan',
   components: {
     QrcodeStream,
     QrcodeDropZone,
     QrcodeCapture,
   },
-  data: function () {
+  data: function() {
     return {
-      text: "",
-      url: "",
-      result: "",
-      error: "",
-      camera: "auto",
-      dragResult: "",
-      uploadResult: "",
-      dragError: "",
-      uploadError: "",
+      text: '',
+      url: '',
+      result: '',
+      error: '',
+      camera: 'auto',
+      dragResult: '',
+      uploadResult: '',
+      dragError: '',
+      uploadError: '',
       stream: true,
       drop: false,
       capture: false,
@@ -145,28 +147,28 @@ export default {
       try {
         await promise;
       } catch (error) {
-        if (error.name === "NotAllowedError") {
+        if (error.name === 'NotAllowedError') {
           this.error =
-            "You need to grant camera access permisson to scan barcodes";
-        } else if (error.name === "NotFoundError") {
-          this.error = "No camera on this device";
-        } else if (error.name === "NotSupportedError") {
-          this.error = "Secure context required (HTTPS, localhost)";
-        } else if (error.name === "NotReadableError") {
-          this.error = "Is the camera already in use?";
-        } else if (error.name === "OverconstrainedError") {
-          this.error = "Installed cameras are not suitable";
-        } else if (error.name === "StreamApiNotSupportedError") {
-          this.error = "Stream API is not supported in this browser";
+            'You need to grant camera access permisson to scan barcodes';
+        } else if (error.name === 'NotFoundError') {
+          this.error = 'No camera on this device';
+        } else if (error.name === 'NotSupportedError') {
+          this.error = 'Secure context required (HTTPS, localhost)';
+        } else if (error.name === 'NotReadableError') {
+          this.error = 'Is the camera already in use?';
+        } else if (error.name === 'OverconstrainedError') {
+          this.error = 'Installed cameras are not suitable';
+        } else if (error.name === 'StreamApiNotSupportedError') {
+          this.error = 'Stream API is not supported in this browser';
         }
       }
     },
     turnCameraOn() {
-      this.camera = "auto";
+      this.camera = 'auto';
     },
 
     turnCameraOff() {
-      this.camera = "off";
+      this.camera = 'off';
     },
     timeout(ms) {
       return new Promise((resolve) => {
@@ -183,15 +185,15 @@ export default {
       try {
         const { content } = await promise;
         if (!content) {
-          this.dragError = "Unable to scan qrcode, pls provide a valid qrcode";
+          this.dragError = 'Unable to scan qrcode, pls provide a valid qrcode';
         } else this.dragResult = content;
       } catch (error) {
-        if (error.name === "DropImageFetchError") {
+        if (error.name === 'DropImageFetchError') {
           this.dragError = "Sorry, you can't load cross-origin images :/";
-        } else if (error.name === "DropImageDecodeError") {
+        } else if (error.name === 'DropImageDecodeError') {
           this.dragError = "Ok, that's not an image. That can't be decoded.";
         } else {
-          this.dragError = "Ups, what kind of error is this?! " + error.message;
+          this.dragError = 'Ups, what kind of error is this?! ' + error.message;
         }
       }
     },
@@ -199,19 +201,24 @@ export default {
       try {
         if (!result)
           return (this.uploadError =
-            "Unable to scan qrcode, pls provide a valid qrcode");
+            'Unable to scan qrcode, pls provide a valid qrcode');
 
         this.uploadResult = result;
       } catch (error) {
-        console.log("error>>", error);
+        console.log('error>>', error);
       }
     },
     clicked(value) {
-      console.log("value", value);
-      this.stream = value === "stream";
-      this.drop = value === "drop";
-      this.capture = value === "capture";
+      console.log('value', value);
+      this.stream = value === 'stream';
+      this.drop = value === 'drop';
+      this.capture = value === 'capture';
       this.open = true;
+      this.$gtag.event('scan qrcode', {
+        event_category: 'qrcode',
+        event_label: 'scan_qrcode',
+        value: 3,
+      });
     },
     checkResult(result) {
       const re = /[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)?/gi;
@@ -221,7 +228,7 @@ export default {
     },
     loadFile(event) {
       var reader = new FileReader();
-      reader.onload = function () {
+      reader.onload = function() {
         // var output = document.getElementById("output");
         // output.src = reader.result;
 
@@ -338,7 +345,7 @@ img {
   font-size: 1.5rem;
 }
 
-input[type="file"] {
+input[type='file'] {
   padding: 1rem;
   font-size: 1.5rem;
   background: #6e7d47;
@@ -440,6 +447,9 @@ input[type="file"] {
 @media only screen and (max-width: 850px) {
   .tab {
     display: none;
+  }
+  .qrcode {
+    margin: 1rem auto;
   }
 }
 </style>

@@ -74,6 +74,11 @@ export default {
       );
 
       this.url = result.data.url;
+      this.$gtag.event('create qrcode', {
+        event_category: 'qrcode',
+        event_label: 'create_qrcode',
+        value: 3,
+      });
       if (this.url) {
         this.isLoading = false;
       }

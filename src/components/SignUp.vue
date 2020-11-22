@@ -44,6 +44,11 @@ export default {
             email: this.email,
           }
         );
+        this.$gtag.event('signup', {
+          event_category: 'auth',
+          event_label: 'create account',
+          value: 2,
+        });
         localStorage.setItem('barcodeToken', result.data.token);
         window.location.href = '/dashboard';
       } catch (error) {

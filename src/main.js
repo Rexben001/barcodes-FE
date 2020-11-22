@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueGTag from 'vue-gtag';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
@@ -32,6 +33,10 @@ router.beforeEach((to, from, next) => {
 });
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
+
+Vue.use(VueGTag, {
+  config: { id: 'G-21F5V0EZTR' },
+});
 
 new Vue({
   router,
