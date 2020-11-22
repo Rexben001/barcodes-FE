@@ -3,11 +3,12 @@
     <div class="create">
       <div>
         <h2>Create Your QR code</h2>
-        <img src="../assets/qrboy.svg" />
+        <img src="../assets/qrboy.svg" alt="qr boy" />
       </div>
 
       <div id="create">
         <form class="form">
+          <label hidden>Enter text</label>
           <textarea placeholder="Enter text here " v-model="text" type="text" />
           <button class="submitted" @click.prevent="submitted">
             Create QR code
@@ -170,7 +171,7 @@ hr {
   top: 20%;
   left: 20%;
   font-size: 2rem;
-  color: #9eb369;
+  color: #597b06;
 }
 
 #create {
@@ -209,7 +210,7 @@ textarea {
 
 .submitted {
   border: none;
-  background: #9eb369;
+  background: #597b06;
   font-size: 1.5rem;
   padding: 1rem 1.5rem;
   margin: 1rem;
@@ -221,7 +222,7 @@ textarea {
 
 .submitted:hover,
 .fa-save:hover {
-  color: #9eb369;
+  color: #597b06;
   background: #dde5cd;
 }
 

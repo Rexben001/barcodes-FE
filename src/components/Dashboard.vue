@@ -15,7 +15,7 @@
       >
         <a v-if="image" download="barcode.png" :href="image">
           <p class="fas fa-download"></p>
-          <img :src="image" :key="imageIndex" />
+          <img :src="image" :key="imageIndex"  alt="qrcodes"/>
         </a>
       </div>
     </div>
@@ -84,7 +84,7 @@ div {
   text-align: left;
   padding-left: 1rem;
   font-size: 2rem;
-  color: #9eb369;
+  color: #597b06;
   margin-left: 15%;
   margin-bottom: 2rem;
   padding-top: 1rem;
@@ -134,7 +134,7 @@ div {
     text-align: left;
     padding-left: 1rem;
     font-size: 2rem;
-    color: #9eb369;
+    color: #597b06;
     margin-bottom: 1rem;
     padding-top: 0.5rem;
   }

@@ -6,7 +6,7 @@
       <p
         @click.prevent="clicked('stream')"
         v-bind:style="{
-          background: stream ? '#9EB369' : '',
+          background: stream ? '#597b06' : '',
           color: stream ? '#fff' : 'inherit',
           cursor: 'pointer',
         }"
@@ -16,7 +16,7 @@
       <p
         @click.prevent="clicked('drop')"
         v-bind:style="{
-          background: drop ? '#9EB369' : '',
+          background: drop ? '#597b06' : '',
           color: drop ? '#fff' : 'inherit',
           cursor: 'pointer',
         }"
@@ -26,7 +26,7 @@
       <p
         @click.prevent="clicked('capture')"
         v-bind:style="{
-          background: capture ? '#9EB369' : '',
+          background: capture ? '#597b06' : '',
           color: capture ? '#fff' : 'inherit',
           cursor: 'pointer',
         }"
@@ -39,7 +39,7 @@
         <h2 v-if="drop" class="drop">Drag and Drop zone</h2>
         <h2 v-if="stream">Scan Barcodes</h2>
         <h2 v-if="capture">Upload zone</h2>
-        <img src="../assets/qr.svg" />
+        <img src="../assets/qr.svg" alt="qr girl"/>
       </div>
       <div v-if="stream">
         <div id="create">

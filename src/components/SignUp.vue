@@ -62,7 +62,7 @@ export default {
 
 <style>
 #submit {
-  background: #9eb369;
+  background: #597b06;
   padding: 1rem 1.5rem;
   font-size: 1rem;
   color: white;
@@ -72,9 +72,9 @@ export default {
 }
 
 #submit:hover {
-  color: #9eb369;
+  color: #597b06;
   background: white;
-  border: #9eb369 solid 2px;
+  border: #597b06 solid 2px;
 }
 form {
   display: flex;
@@ -112,11 +112,11 @@ a:hover {
 } */
 
 .login > input {
-  border: #9eb369 1px solid;
+  border: #597b06 1px solid;
 }
 
 .login > button {
-  border: #9eb369 1px solid;
+  border: #597b06 1px solid;
 }
 
 .details {
