@@ -123,6 +123,7 @@ hr {
   display: flex;
   justify-content: center;
   width: 100%;
+  padding-bottom: 2rem;
 }
 .create {
   width: 95%;

@@ -142,6 +142,14 @@ footer {
     font-weight: 500;
     box-shadow: 1px 1px 3px 1px #ddd;
   }
+  footer {
+    padding: 0.5rem;
+    font-size: 13px !important;
+    box-sizing: border-box;
+}
+  .copy {
+    font-size: 13px !important;
+  }
 }
 @media only screen and (max-width: 500px) {
   nav > div {
