@@ -21,7 +21,7 @@
           cursor: 'pointer',
         }"
       >
-        <span class="fas fa-arrows-alt"></span> Drag and Drop Scan
+        <span class="fas fa-arrows-alt"></span> DnD Scan
       </p>
       <p
         @click.prevent="clicked('capture')"
@@ -39,7 +39,7 @@
         <h2 v-if="drop" class="drop">Drag and Drop zone</h2>
         <h2 v-if="stream">Scan Barcodes</h2>
         <h2 v-if="capture">Upload zone</h2>
-        <img src="../assets/qr.svg" alt="qr girl"/>
+        <img src="../assets/qr.svg" alt="qr girl" />
       </div>
       <div v-if="stream">
         <div id="create">
@@ -300,13 +300,13 @@ img {
 .tab {
   width: 20%;
   box-sizing: border-box;
-  margin-top: -30px;
+  margin-top: -10px;
   position: absolute;
   height: 90vh;
   border-right: 0.5px solid #ddd;
 }
 .tab > p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   cursor: pointer;
   padding: 2rem 0.5rem 2rem 2rem;
   text-align: left;
@@ -315,7 +315,7 @@ img {
 }
 
 .tab > p:hover {
-  background: rgb(165 187 108);
+  background: rgb(84 108 26);
   color: white !important;
 }
 
@@ -402,7 +402,8 @@ input[type='file'] {
 .fa-camera,
 .fa-arrows-alt,
 .fa-upload {
-  margin-right: 2rem;
+  margin-right: 0.8rem;
+  font-size: 2rem;
 }
 @media only screen and (max-width: 700px) {
   .sideMenu,
