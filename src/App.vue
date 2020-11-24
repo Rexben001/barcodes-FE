@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <nav>
+      <router-link to="/"
+        ><img class="head-logo" src="./assets/qr.png"
+      /></router-link>
       <div>
-        <router-link to="/">Create</router-link>
+        <!-- <router-link to="/">Home</router-link> -->
+        <router-link to="/create">Create</router-link>
         <router-link to="/scan">Scan</router-link>
         <router-link v-if="token" to="/dashboard">Dashboard</router-link>
         <router-link v-if="!token" to="/signup">Register</router-link>
@@ -62,6 +66,7 @@ nav {
   position: fixed;
   z-index: 300;
   background: white;
+  display: flex;
 }
 
 nav > div {
@@ -82,7 +87,12 @@ nav a:hover,
   background: #f5f5f5;
   color: green;
 }
-
+.head-logo {
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  top: -5px;
+}
 .submit {
   border: none;
   background: inherit;
@@ -119,7 +129,6 @@ footer {
 }
 
 .logo {
-  /* margin-right: 4rem; */
   text-align: left;
 }
 
@@ -137,16 +146,17 @@ footer {
   nav a,
   .submit {
     padding: 4px 6px;
-    margin: .2rem 1rem .5rem;
+    margin: 0.2rem 1rem 0.5rem;
     font-size: 1rem;
     font-weight: 500;
     box-shadow: 1px 1px 3px 1px #ddd;
   }
+
   footer {
     padding: 0.5rem;
     font-size: 13px !important;
     box-sizing: border-box;
-}
+  }
   .copy {
     font-size: 13px !important;
   }
@@ -160,7 +170,7 @@ footer {
   nav a,
   .submit {
     padding: 4px 6px;
-    margin: .2rem .5rem;
+    margin: 0.2rem 0.5rem;
     font-size: 1rem;
     font-weight: 500;
     box-shadow: 1px 1px 3px 1px #ddd;

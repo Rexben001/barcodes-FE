@@ -6,10 +6,12 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Barcodes from './components/Barcodes';
 import Scan from './components/Scan';
+import Home from './components/Index';
 import App from './App';
 
 const routes = [
-  { path: '/', component: Barcodes, name: 'Barcodes' },
+  { path: '/', component: Home, name: 'Home' },
+  { path: '/create', component: Barcodes, name: 'Barcodes' },
   { path: '/signup', component: SignUp, name: 'Signup' },
   { path: '/login', component: Login, name: 'Login' },
   { path: '/dashboard', component: Dashboard, name: 'Dashboard' },
@@ -41,5 +43,5 @@ Vue.use(VueGTag, {
 new Vue({
   router,
   render: (h) => h(App),
-  mounted: () => document.dispatchEvent(new Event("x-app-rendered")),
+  mounted: () => document.dispatchEvent(new Event('x-app-rendered')),
 }).$mount('#app');
