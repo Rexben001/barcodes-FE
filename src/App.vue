@@ -13,6 +13,11 @@
       </div>
     </nav>
     <router-view />
+    <footer>
+      <p class="copy logo">QR CODE ZONE</p>
+      <p class="copy">@Copyright 2020</p>
+      <p class="contact">Contact Us</p>
+    </footer>
   </div>
 </template>
 
@@ -44,6 +49,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  position: relative;
+  min-height: 100vh;
 }
 
 nav {
@@ -92,6 +99,33 @@ textarea:focus {
 }
 textarea {
   font-size: 2rem;
+}
+
+footer {
+  background: #374c01;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+}
+
+.copy {
+  font-size: 16px !important;
+  margin-left: 1rem;
+  text-align: center;
+  width: 30%;
+}
+
+.logo {
+  /* margin-right: 4rem; */
+  text-align: left;
+}
+
+.contact {
+  text-align: right;
+  width: 30%;
 }
 
 @media only screen and (max-width: 700px) {
