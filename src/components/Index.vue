@@ -1,6 +1,11 @@
 <template>
   <div class="main">
     <h2>Main Page</h2>
+    <img src="../assets/qr.svg" />
+
+    <div>
+      <p>Create QR codes</p>
+    </div>
   </div>
 </template>
 
@@ -18,6 +23,6 @@ export default {
   position: relative;
 }
 h2 {
-    margin-top: 70px;
+  margin-top: 70px;
 }
 </style>
