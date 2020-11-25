@@ -84,7 +84,6 @@ export default {
 body {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -94,6 +93,8 @@ body {
   color: #2c3e50;
   position: relative;
   min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 nav a:hover,
