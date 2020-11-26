@@ -124,6 +124,7 @@ hr {
   justify-content: center;
   width: 100%;
   padding-bottom: 2rem;
+  margin-bottom: 8rem;
 }
 .create {
   width: 95%;

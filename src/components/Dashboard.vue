@@ -6,7 +6,7 @@
       :on-cancel="onCancel"
       :is-full-page="fullPage"
     ></loading>
-    <h2>Dashboard</h2>
+    <h2 v-if="!isLoading">Dashboard</h2>
     <div class="barcodes">
       <div
         v-bind:key="imageIndex"
@@ -15,7 +15,7 @@
       >
         <a v-if="image" download="barcode.png" :href="image">
           <p class="fas fa-download"></p>
-          <img :src="image" :key="imageIndex"  alt="qrcodes"/>
+          <img :src="image" :key="imageIndex" alt="qrcodes" />
         </a>
       </div>
     </div>
@@ -78,6 +78,7 @@ div {
 .dashboard {
   position: absolute;
   top: 70px;
+  margin-bottom: 5rem;
 }
 
 .dashboard > h2 {

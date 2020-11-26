@@ -243,6 +243,8 @@ footer {
   overflow: hidden;
   height: 63px;
   position: relative;
+  border-bottom: 1px solid #ddd;
+  z-index: 100;
 }
 
 .navbaropen {

@@ -295,6 +295,7 @@ img {
   top: 9%;
   position: absolute;
   width: 100%;
+  margin-bottom: 6rem;
 }
 
 .tab {
