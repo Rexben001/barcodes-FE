@@ -165,6 +165,7 @@ hr {
   position: absolute;
   top: 13%;
   right: 10px;
+  opacity: .4;
 }
 
 .create > div > h2,

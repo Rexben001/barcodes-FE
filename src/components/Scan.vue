@@ -339,6 +339,7 @@ img {
 }
 .qrcode .create img {
   top: -28px;
+  opacity: 0.4;
 }
 
 .answer {
