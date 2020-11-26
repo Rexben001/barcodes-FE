@@ -133,7 +133,7 @@ textarea {
 footer {
   background: #374c01;
   color: white;
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   width: 100%;
   padding: 1.5rem;
