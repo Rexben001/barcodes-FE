@@ -5,9 +5,8 @@
       <div class="first article">
         <div>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
+            The QR Code Zone Scanner is the perfect tool to scan your QR codes.
+            You can use your mobile or laptop and it works on most websites.
           </p>
         </div>
         <img src="../assets/qr.svg" />
@@ -16,25 +15,28 @@
         <img src="../assets/qrboy.svg" />
         <div>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
+            The QR Code Zone Creator is the perfect tool to create your QR codes
+            for personal branding. You can use your mobile or laptop and it
+            works on most websites.
           </p>
         </div>
       </div>
     </div>
     <div class="how-to">
-      <h2>How to Use</h2>
+      <h2>What about QR code</h2>
       <div>
         <p>
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout.
+          A QR code (abbreviated from Quick Response code) is a type of matrix
+          barcode (or two-dimensional barcode) first designed in 1994 for the
+          automotive industry in Japan. A barcode is a machine-readable optical
+          label that contains information about the item to which it is
+          attached. In practice, QR codes often contain data for a locator,
+          identifier, or tracker that points to a website or application. A QR
+          code uses four standardized encoding modes (numeric, alphanumeric,
+          byte/binary, and kanji) to store data efficiently; extensions may also
+          be used.[ ~ Wikipedia
         </p>
-        <p>
-          The point of using Lorem Ipsum is that it has a more-or-less normal
-          distribution of letters, as opposed to using 'Content here, content
-          here', making it look like readable English.
-        </p>
+        <br />
       </div>
     </div>
   </div>
@@ -104,7 +106,7 @@ h2 {
   padding-bottom: 1rem;
 }
 .how-to div {
-  width: 50%;
+  width: 70%;
   text-align: center;
   margin: 0 auto;
 }
@@ -115,6 +117,7 @@ h2 {
 @media only screen and (max-width: 700px) {
   .main-article {
     height: auto;
+    padding: 1rem;
   }
   .first {
     flex-direction: column;
