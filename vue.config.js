@@ -2,13 +2,10 @@ module.exports = {
   pluginOptions: {
     prerenderSpa: {
       registry: undefined,
-      renderRoutes: [
-        '/',
-        '/scan'
-      ],
+      renderRoutes: ['/'],
       useRenderEvent: true,
       headless: true,
-      onlyProduction: true
-    }
-  }
-}
+      onlyProduction: true,
+    },
+  },
+};
