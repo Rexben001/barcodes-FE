@@ -14,7 +14,7 @@
     "vue": "^2.6.11",
     "vue-gtag": "^1.10.0",
     "vue-loading-overlay": "^3.3.3",
-    "vue-qrcode-reader": "^2.3.12",
+    "vue-qrcode-reader": "^2.3.18",
     "vue-router": "^3.4.3"
   },
   "devDependencies": {
